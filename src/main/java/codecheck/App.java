@@ -24,12 +24,11 @@ public class App {
 		}
 	};
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		// 引数バリデーション
 		if (args.length != 2) {
-			System.out.println("");
 			System.err.println("第一引数: API実行時に使用するseed文字列 および 第二引数: 再帰関数で結果を計算するn整数値 は必須入力です。");
-			return;
+			throw new Exception("引数エラー");
 		}
 
 		try {
@@ -37,11 +36,11 @@ public class App {
 			int n = Integer.parseInt(args[1]);
 			System.out.println(execute(n));
 		} catch (NumberFormatException e1) {
-			System.out.println("");
 			System.err.println("第二引数: 再帰関数で結果を計算するn整数値 は整数値で入力して下さい。");
+			throw e1;
 		} catch (Exception e2) {
-			System.out.println("");
 			System.err.println(e2.getMessage());
+			throw e2;
 		}
 	}
 
